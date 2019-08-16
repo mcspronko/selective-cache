@@ -46,6 +46,6 @@ class CacheButton
      */
     private function getFlushInvalidatedOnlyUlr()
     {
-        return $this->url->getUrl('adminhtml/*/flushAll');
+        return $this->url->getUrl('adminhtml/pronko_selectivecache/flushInvalidated');
     }
 }
