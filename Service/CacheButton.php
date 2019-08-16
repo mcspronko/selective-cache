@@ -35,7 +35,7 @@ class CacheButton
             'flush_invalidated_only',
             [
                 'label' => __('Flush Invalidated Only'),
-                'onclick' => 'setLocation(\'' . $this->getFlushInvalidatedOnlyUlr() . '\')',
+                'onclick' => 'setLocation(\'' . $this->getFlushInvalidatedOnlyUrl() . '\')',
                 'class' => 'primary flush-cache-magento'
             ]
         );
@@ -44,8 +44,8 @@ class CacheButton
     /**
      * @return string
      */
-    private function getFlushInvalidatedOnlyUlr()
+    private function getFlushInvalidatedOnlyUrl()
     {
-        return $this->url->getUrl('adminhtml/pronko_selectivecache/flushInvalidated');
+        return $this->url->getUrl('pronko_selectivecache/*/flushInvalidated');
     }
 }
