@@ -25,7 +25,8 @@
     "magento/magento-coding-standard": "~2.0"
   },
   "scripts": {
-    "test-phpcs": "vendor/bin/phpcs --standard=Magento2 ./Controller/ ./Plugin/ ./Service/ ./etc/ i18n/",
+    "test-unit": "vendor/phpunit/phpunit/phpunit Test/Unit",
+    "test-phpcs": "vendor/bin/phpcs --standard=Magento2 ./Controller/ ./Plugin/ ./Service/ ./Test/ ./etc/ i18n/",
     "post-install-cmd": [
       "[ $COMPOSER_DEV_MODE -eq 1 ] && vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
     ],

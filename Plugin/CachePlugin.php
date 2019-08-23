@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Plugin;
@@ -29,6 +30,7 @@ class CachePlugin
     /**
      * @param Cache $subject
      * @param LayoutInterface $layout
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeSetLayout(
         Cache $subject,

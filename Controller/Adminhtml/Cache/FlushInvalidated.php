@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pronko\SelectiveCache\Controller\Adminhtml\Cache;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Backend\Controller\Adminhtml\Cache;
 use Magento\Framework\DataObject;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Backend\Controller\Adminhtml\Cache;
 
 /**
  * Class FlushInvalidated
