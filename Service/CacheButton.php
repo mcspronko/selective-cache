@@ -32,9 +32,9 @@ class CacheButton
     public function execute(Cache $cache)
     {
         $cache->addButton(
-            'flush_invalidated_only',
+            'refresh_invalidated_cache',
             [
-                'label' => __('Flush Invalidated Only'),
+                'label' => __('Refresh Invalidated Cache'),
                 'onclick' => 'setLocation(\'' . $this->getFlushInvalidatedOnlyUrl() . '\')',
                 'class' => 'primary flush-cache-magento'
             ]
