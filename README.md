@@ -1,7 +1,11 @@
-# Selective Cache Cleaner for Magento2
+# Selective Cache extension for Magento2
 
-This extension adds a button in **Cache Management section** to clear cache for only `invalidated` areas. 
+This extension adds a **Refresh Invalidated Cache** button to clear `invalidated` cache type. 
 
-### Usage
+## Usage
 
-System > Tools > Cache Management > **Clear Invalidated**
+Navigate to the System > Tools > Cache Management page and you should see a **Refresh Invalidated Cache** button.
+
+## TODO
+
+Enhancement - add a link inside Cache notifications to clear invalidated cache types. This will remove a need to go to a "Cache Management" page and refresh cache.
