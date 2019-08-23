@@ -17,15 +17,17 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
      */
     public function execute()
     {
-        $flag = false;
+        $cacheLabels = [];
         /** @var DataObject $invalidatedType */
         foreach ($this->_cacheTypeList->getInvalidated() as $invalidatedType) {
             $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));
-            $flag = true;
+            $cacheLabels[] = $invalidatedType->getData('cache_type');
         }
 
-        if ($flag) {
-            $this->messageManager->addSuccessMessage(__("Invalidated caches have been successfully cleaned."));
+        if (!empty($cacheLabels)) {
+            $this->messageManager->addSuccessMessage(
+                __("The following cache types have been successfully cleaned: %1", implode(', ', $cacheLabels))
+            );
         } else {
             $this->messageManager->addNoticeMessage(__("There are no invalidated cache types to be cleaned."));
         }
