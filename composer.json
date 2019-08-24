@@ -1,9 +1,9 @@
 {
   "name": "pronko/selective-cache",
-  "description": "Selective Cache extension",
+  "description": "Selective Cache extension for Magento 2",
   "version": "1.0.0",
   "type": "magento2-module",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Pronko Consulting",
