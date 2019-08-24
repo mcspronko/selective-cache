@@ -17,7 +17,7 @@ The cache records which are marked as *Invalidated* are cleaned when a user hits
 ### Composer
 
 ```bash
-composer config repositories.pronko vcs git@github.com:mcspronko/selective-cache.git
+composer config repositories.pronko git git@github.com:mcspronko/selective-cache.git
 composer require pronko/selective-cache
 ```
 
