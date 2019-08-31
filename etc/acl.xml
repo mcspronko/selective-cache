@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::dashboard">
+                    <resource id="Pronko_SelectiveCache::flushinvalidate" title="Pronko Selective Cache Module Permission" sortOrder="100">
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
