@@ -8,6 +8,8 @@ declare(strict_types=1);
 namespace Pronko\SelectiveCache\Plugin;
 
 use Magento\Backend\Block\Cache;
+use Magento\Backend\Block\Template\Context;
+use Magento\Framework\AuthorizationInterface;
 use Magento\Framework\View\LayoutInterface;
 use Pronko\SelectiveCache\Service\CacheButton;
 
@@ -22,23 +24,33 @@ class CachePlugin
     private $cacheButton;
 
     /**
-     * CachePlugin constructor.
-     * @param CacheButton $cacheButton
+     * @var AuthorizationInterface
      */
-    public function __construct(CacheButton $cacheButton)
+    private $_authorization;
+
+    /**
+     * CachePlugin constructor.
+     *
+     * @param CacheButton $cacheButton
+     * @param Context     $context
+     */
+    public function __construct(CacheButton $cacheButton, Context $context)
     {
+        $this->_authorization = $context->getAuthorization();
         $this->cacheButton = $cacheButton;
     }
 
     /**
-     * @param Cache $subject
-     * @param LayoutInterface $layout
+     * @param                                         Cache           $subject
+     * @param                                         LayoutInterface $layout
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeSetLayout(
         Cache $subject,
         LayoutInterface $layout
     ) {
-        $this->cacheButton->execute($subject);
+        if($this->_authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
+            $this->cacheButton->execute($subject);
+        }
     }
 }
