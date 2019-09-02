@@ -31,7 +31,7 @@ class CachePlugin
      * CachePlugin constructor.
      *
      * @param CacheButton $cacheButton
-     * @param Context $context
+     * @param AuthorizationInterface $authorization
      */
     public function __construct(CacheButton $cacheButton, AuthorizationInterface $authorization)
     {
@@ -42,6 +42,7 @@ class CachePlugin
     /**
      * @param Cache $subject
      * @param LayoutInterface $layout
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeSetLayout(
         Cache $subject,
