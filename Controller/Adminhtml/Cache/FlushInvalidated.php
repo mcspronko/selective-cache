@@ -18,6 +18,13 @@ use Magento\Backend\Controller\Adminhtml\Cache;
 class FlushInvalidated extends Cache implements HttpGetActionInterface
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'Pronko_SelectiveCache::flush_invalidated_cache';
+
+    /**
      * @return ResultInterface
      */
     public function execute()
