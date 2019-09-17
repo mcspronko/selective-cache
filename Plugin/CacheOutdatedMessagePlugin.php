@@ -64,6 +64,6 @@ class CacheOutdatedMessagePlugin
      */
     private function getFlushInvalidatedOnlyUrl()
     {
-        return $this->urlBuilder->getUrl('pronko_selectivecache/*/flushInvalidated');
+        return $this->urlBuilder->getUrl('pronko_selectivecache/cache/flushInvalidated');
     }
 }
