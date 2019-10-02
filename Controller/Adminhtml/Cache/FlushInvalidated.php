@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Controller\Adminhtml\Cache;
 
-use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\DataObject;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Backend\Controller\Adminhtml\Cache;
@@ -30,6 +29,7 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
     public function execute()
     {
         $cacheLabels = [];
+
         /** @var DataObject $invalidatedType */
         foreach ($this->_cacheTypeList->getInvalidated() as $invalidatedType) {
             $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));
@@ -45,6 +45,7 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
         }
 
         $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath('adminhtml/cache');
+        //return $resultRedirect->setPath('adminhtml/cache');
+        return $resultRedirect->setPath($this->_redirect->getRefererUrl());
     }
 }
