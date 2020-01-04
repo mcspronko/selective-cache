@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Test\Unit\Plugin;
 
+use Magento\Framework\AuthorizationInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\View\LayoutInterface;
@@ -39,6 +40,11 @@ class CachePluginTest extends TestCase
      */
     private $layout;
 
+    /**
+     * @var AuthorizationInterface|MockObject
+     */
+    private $authorization;
+
     protected function setUp()
     {
         $this->cacheButton = $this->getMockBuilder(CacheButton::class)
@@ -53,7 +59,15 @@ class CachePluginTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->object = new CachePlugin($this->cacheButton);
+        $this->authorization = $this->getMockBuilder(AuthorizationInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->authorization->method('isAllowed')
+            ->with('Pronko_SelectiveCache::flush_invalidated_cache')
+            ->willReturn(true);
+
+        $this->object = new CachePlugin($this->cacheButton, $this->authorization);
     }
 
     public function testBeforeSetLayout()
