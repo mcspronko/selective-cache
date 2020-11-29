@@ -12,4 +12,11 @@
     <type name="Magento\AdminNotification\Model\System\Message\CacheOutdated">
         <plugin name="PronkoSelectiveCacheMessagePlugin" type="Pronko\SelectiveCache\Plugin\CacheOutdatedMessagePlugin" />
     </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="flushInvalidatedCache" xsi:type="object">Pronko\SelectiveCache\Console\Command\CacheFlushInvalidatedCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
