@@ -51,7 +51,7 @@ class CacheOutdatedMessagePlugin
     {
         if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
             $result .= __(
-                '<br /> Additionally you can <a href="%1">Flush Invalidated Cache</a> directly',
+                '<br /> Additionally you can <a href="%1">Flush Invalidated Cache</a> directly.',
                 $this->getFlushInvalidatedOnlyUrl()
             );
         }
