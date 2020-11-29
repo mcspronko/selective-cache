@@ -25,17 +25,16 @@ class CachePlugin
     /**
      * @var AuthorizationInterface
      */
-    private $_authorization;
+    private $authorization;
 
     /**
      * CachePlugin constructor.
-     *
      * @param CacheButton $cacheButton
      * @param AuthorizationInterface $authorization
      */
     public function __construct(CacheButton $cacheButton, AuthorizationInterface $authorization)
     {
-        $this->_authorization = $authorization;
+        $this->authorization = $authorization;
         $this->cacheButton = $cacheButton;
     }
 
@@ -44,11 +43,9 @@ class CachePlugin
      * @param LayoutInterface $layout
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function beforeSetLayout(
-        Cache $subject,
-        LayoutInterface $layout
-    ) {
-        if($this->_authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
+    public function beforeSetLayout(Cache $subject, LayoutInterface $layout)
+    {
+        if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
             $this->cacheButton->execute($subject);
         }
     }
