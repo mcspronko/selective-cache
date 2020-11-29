@@ -102,6 +102,6 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
         }
 
         $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath('adminhtml/cache');
+        return $resultRedirect->setPath($this->_redirect->getRefererUrl());
     }
 }

@@ -35,3 +35,7 @@ modman clone git@github.com:mcspronko/selective-cache.git
 
 * Peter Herrmann
 * Harshvardhan Malpani
+* Serhii Koval
+* Antonis Galanis
+* Arshad Syed
+* Andresa Martins

@@ -1,7 +1,7 @@
 {
   "name": "pronko/selective-cache",
   "description": "Selective Cache extension for Magento 2",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "magento2-module",
   "license": "MIT",
   "authors": [
@@ -17,8 +17,8 @@
     }
   },
   "require": {
-    "magento/framework": "101.0.*|102.0.*",
-    "magento/module-backend": "100.2.*|101.0.*"
+    "magento/framework": "~101|~102|~103",
+    "magento/module-backend": "~100|~101|~102"
   },
   "require-dev": {
     "phpunit/phpunit": "~6.5",
