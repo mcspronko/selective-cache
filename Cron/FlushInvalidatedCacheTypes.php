@@ -3,6 +3,7 @@ namespace Pronko\SelectiveCache\Cron;
 
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Pronko\SelectiveCache\Logger\CleanCacheLogger;
 
 /** Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob */
 
@@ -19,19 +20,25 @@ class FlushInvalidatedCacheTypes
      */
     protected $scopeConfig;
 
+    /** @var CleanCacheLogger */
+    protected $logger;
+
     /**
      * FlushInvalidatedCache constructor.
      *
      * @param TypeListInterfaceAlias $cacheTypeList
      * @param ScopeConfigInterface $scopeConfig
+     * @param CleanCacheLogger $logger
      */
 
     public function __construct(
         TypeListInterface $cacheTypeList,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        CleanCacheLogger $logger
     ) {
         $this->_cacheTypeList = $cacheTypeList;
         $this->_scopeConfig = $scopeConfig;
+        $this->_logger = $logger;
     }
     
     /**
@@ -46,6 +53,12 @@ class FlushInvalidatedCacheTypes
         if ($cronenabled==true) {
             foreach ($this->_cacheTypeList->getInvalidated() as $invalidatedType) {
                 $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));
+                $cacheLabels[] = $invalidatedType->getData('cache_type');
+            }
+            
+            if (!empty($cacheLabels)) {
+                $logoutput = implode(", ", $cacheLabels);
+                $this->_logger->info(__("Following cache types were automatically cleared: ").$logoutput);
             }
         }
     }
