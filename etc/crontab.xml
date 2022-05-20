@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="pronko">
+        <job name="flush_invalidated_cache" instance="Pronko\SelectiveCache\Cron\FlushInvalidatedCacheTypes" method="execute">
+          <!-- <schedule>* * * * *</schedule> -->
+          <config_path>selectivecache/general/cronjob_clear_invalidated_cache</config_path>
+        </job>
+    </group>
+</config>
