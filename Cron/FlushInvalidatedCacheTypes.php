@@ -56,7 +56,7 @@ class FlushInvalidatedCacheTypes
 
     public function execute()
     {
-        $cronenabled = $this->getConfig('selectivecache/general/enabled');
+        $cronenabled = $this->getConfig('selectivecache/cron/enabled');
         if ($cronenabled==true) {
             foreach ($this->_cacheTypeList->getInvalidated() as $invalidatedType) {
                 $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));

@@ -8,7 +8,7 @@
             <label>Selective Cache</label>
             <tab>pronko</tab>
             <resource>Pronko_SelectiveCache::flush_invalidated_cache</resource>
-            <group id="general" translate="label tooltip comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="cron" translate="label tooltip comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Configure Cronjob</label>
                 <field id="enabled" translate="label tooltip comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Enable Cronjob</label>
