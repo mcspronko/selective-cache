@@ -68,7 +68,7 @@ class FlushInvalidatedCacheTypes
             }
 
             if (!empty($cacheLabels)) {
-                $this->logger->info(__("Cache types cleared automatically: %1", implode(',', $cacheLabels)));
+                $this->logger->info(__("Cache types cleared automatically: %1", implode(', ', $cacheLabels)));
             }
         }
     }
