@@ -6,7 +6,6 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Pronko\SelectiveCache\Logger\CleanCacheLogger;
 
 /** Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob */
-
 class FlushInvalidatedCacheTypes
 {
 
@@ -40,7 +39,7 @@ class FlushInvalidatedCacheTypes
         $this->_scopeConfig = $scopeConfig;
         $this->_logger = $logger;
     }
-    
+
     /**
      * Method execute flushes invalidated Cache types
      *
@@ -55,7 +54,7 @@ class FlushInvalidatedCacheTypes
                 $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));
                 $cacheLabels[] = $invalidatedType->getData('cache_type');
             }
-            
+
             if (!empty($cacheLabels)) {
                 $logoutput = implode(", ", $cacheLabels);
                 $this->_logger->info(__("Following cache types were automatically cleared: ").$logoutput);
