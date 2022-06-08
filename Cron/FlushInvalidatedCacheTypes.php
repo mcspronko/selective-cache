@@ -23,27 +23,29 @@ class FlushInvalidatedCacheTypes
     /**
      * @var ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $_scopeConfig;
 
-    /** @var CleanCacheLogger */
-    protected $logger;
+    /**
+     * @var CleanCacheLogger
+     */
+    private $_logger;
 
     /**
      * FlushInvalidatedCache constructor.
      *
-     * @param TypeListInterfaceAlias $cacheTypeList
-     * @param ScopeConfigInterface $scopeConfig
-     * @param CleanCacheLogger $logger
+     * @param TypeListInterfaceAlias $_cacheTypeList
+     * @param ScopeConfigInterface $_scopeConfig
+     * @param CleanCacheLogger $_logger
      */
 
     public function __construct(
-        TypeListInterface $cacheTypeList,
-        ScopeConfigInterface $scopeConfig,
-        CleanCacheLogger $logger
+        TypeListInterface $_cacheTypeList,
+        ScopeConfigInterface $_scopeConfig,
+        CleanCacheLogger $_logger
     ) {
-        $this->_cacheTypeList = $cacheTypeList;
-        $this->_scopeConfig = $scopeConfig;
-        $this->_logger = $logger;
+        $this->_cacheTypeList = $_cacheTypeList;
+        $this->_scopeConfig = $_scopeConfig;
+        $this->_logger = $_logger;
     }
 
     /**
