@@ -18,7 +18,7 @@ class FlushInvalidatedCacheTypes
     /**
      * @var TypeListInterface
      */
-    protected $_cacheTypeList;
+    private $_cacheTypeList;
 
     /**
      * @var ScopeConfigInterface
