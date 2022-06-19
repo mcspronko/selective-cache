@@ -13,8 +13,9 @@ use Magento\Framework\View\LayoutInterface;
 use Pronko\SelectiveCache\Service\CacheButton;
 
 /**
- * Class CachePlugin
+ * Class CachePlugin for creating Button in Backend
  */
+
 class CachePlugin
 {
     /**
@@ -39,10 +40,15 @@ class CachePlugin
     }
 
     /**
+     * Method beforeSetLayout
+     *
      * @param Cache $subject
      * @param LayoutInterface $layout
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     *
+     * @return void
      */
+
     public function beforeSetLayout(Cache $subject, LayoutInterface $layout)
     {
         if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {

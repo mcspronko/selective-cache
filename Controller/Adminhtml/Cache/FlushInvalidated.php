@@ -19,7 +19,7 @@ use Magento\Framework\Event\Manager as EventManager;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Class FlushInvalidated
+ * Class FlushInvalidated triggers Cache Flush and creates reloads the page
  */
 class FlushInvalidated extends Cache implements HttpGetActionInterface
 {
@@ -28,7 +28,7 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Pronko_SelectiveCache::flush_invalidated_cache';
+    public const ADMIN_RESOURCE = 'Pronko_SelectiveCache::flush_invalidated_cache';
     /**
      * @var Action\Context
      */
@@ -78,6 +78,8 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
     }
 
     /**
+     * Method execute
+     *
      * @return ResultInterface
      */
     public function execute()
@@ -102,6 +104,6 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
         }
 
         $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath($this->_redirect->getRefererUrl());
+        return $resultRedirect->setRefererOrBaseUrl();
     }
 }

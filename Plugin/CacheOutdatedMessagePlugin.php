@@ -46,11 +46,14 @@ class CacheOutdatedMessagePlugin
     }
 
     /**
+     * Method afterGetText
+     *
      * @param CacheOutdated $subject
      * @param string        $result
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
+
     public function afterGetText(CacheOutdated $subject, string $result)
     {
         if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
@@ -70,6 +73,8 @@ class CacheOutdatedMessagePlugin
     }
 
     /**
+     * Method getFlushInvalidatedOnlyUrl gets Url for flushing only invalidated cache types
+     *
      * @return string
      */
     private function getFlushInvalidatedOnlyUrl(): string

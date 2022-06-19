@@ -13,9 +13,9 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
 /**
- * Class FlushInvalidatedCache
- * @package Pronko\SelectiveCache\Observer
+ * Class FlushInvalidatedCache gets cache types to display after flushing
  */
+
 class FlushInvalidatedCache implements ObserverInterface
 {
     /**
@@ -34,7 +34,7 @@ class FlushInvalidatedCache implements ObserverInterface
 
     /**
      * Flush Invalidated cache
-     * 
+     *
      * @param Observer $observer
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */

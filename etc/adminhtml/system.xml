@@ -1,0 +1,24 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="pronko" translate="label tooltip comment" sortOrder="100">
+            <label>Pronko</label>
+        </tab>
+        <section id="selectivecache" translate="label tooltip comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Selective Cache</label>
+            <tab>pronko</tab>
+            <resource>Pronko_SelectiveCache::flush_invalidated_cache</resource>
+            <group id="cron" translate="label tooltip comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Configure Cronjob</label>
+                <field id="enabled" translate="label tooltip comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Cronjob</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cronjob_clear_invalidated_cache" translate="label tooltip comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Set cronjob for clearing invalidated cache types</label>
+                    <comment>Set time for cronjob (for example: * * * * *   to run every minute)</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

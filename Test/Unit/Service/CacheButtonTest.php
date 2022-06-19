@@ -14,7 +14,7 @@ use Pronko\SelectiveCache\Service\CacheButton;
 use Magento\Framework\UrlInterface;
 
 /**
- * Class CacheButtonTest
+ * Class CacheButtonTest creates TestCase for button Creation
  */
 class CacheButtonTest extends TestCase
 {

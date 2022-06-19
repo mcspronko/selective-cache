@@ -16,7 +16,7 @@ use Pronko\SelectiveCache\Plugin\CachePlugin;
 use Pronko\SelectiveCache\Service\CacheButton;
 
 /**
- * Class CachePluginTest
+ * Class CachePluginTest creates Testcase for CachePlugin
  */
 class CachePluginTest extends TestCase
 {

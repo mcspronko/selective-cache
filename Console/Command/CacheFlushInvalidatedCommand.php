@@ -35,7 +35,7 @@ class CacheFlushInvalidatedCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function configure()
     {
@@ -47,7 +47,8 @@ class CacheFlushInvalidatedCommand extends Command
     /**
      * Flushes invalidated cache types
      *
-     * @param array $cacheTypes
+     * @param InputInterface $input
+     * @param OutputInterface $output
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
