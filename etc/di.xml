@@ -19,17 +19,16 @@
             </argument>
         </arguments>
     </type>
-    <type name="Pronko\SelectiveCache\Logger\CleanCacheLoggerHandler">
+    <virtualType name="PronkoSelectiveCacheCustomLogger" type="Magento\Framework\Logger\Monolog">
         <arguments>
-            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
-        </arguments>
-    </type>
-    <type name="Pronko\SelectiveCache\Logger\CleanCacheLogger">
-        <arguments>
-            <argument name="name" xsi:type="string">CleanCacheLogger</argument>
             <argument name="handlers"  xsi:type="array">
-                <item name="system" xsi:type="object">Pronko\SelectiveCache\Logger\CleanCacheLoggerHandler</item>
+                <item name="debug" xsi:type="object">Pronko\SelectiveCache\Logger\DebugHandler</item>
             </argument>
+        </arguments>
+    </virtualType>
+    <type name="Pronko\SelectiveCache\Cron\FlushInvalidatedCacheTypes">
+        <arguments>
+            <argument name="logger" xsi:type="object">PronkoSelectiveCacheCustomLogger</argument>
         </arguments>
     </type>
 </config>

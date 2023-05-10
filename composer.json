@@ -13,7 +13,10 @@
     "require": {
         "magento/framework": "~102|~103",
         "magento/module-backend": "~101|~102",
-        "symfony/console": ">=5.4"
+        "magento/module-store": "*",
+        "magento/module-adminnotification": "*",
+        "symfony/console": "~5",
+        "psr/log": "*"
     },
     "autoload": {
         "files": [
