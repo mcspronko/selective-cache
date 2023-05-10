@@ -1,45 +1,28 @@
 {
-  "name": "pronko/selective-cache",
-  "description": "Selective Cache extension for Magento 2",
-  "version": "1.1.0",
-  "type": "magento2-module",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Pronko Consulting",
-      "homepage": "https://www.pronkoconsulting.com/"
-    }
-  ],
-  "repositories": {
-    "magento": {
-      "type": "composer",
-      "url": "https://repo.magento.com/"
-    }
-  },
-  "require": {
-    "magento/framework": "~101|~102|~103",
-    "magento/module-backend": "~100|~101|~102"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~6.5",
-    "magento/magento-coding-standard": "~2.0"
-  },
-  "scripts": {
-    "test-unit": "vendor/phpunit/phpunit/phpunit Test/Unit",
-    "test-phpcs": "vendor/bin/phpcs --standard=Magento2 ./Controller/ ./Plugin/ ./Service/ ./Test/ ./etc/ i18n/",
-    "post-install-cmd": [
-      "[ $COMPOSER_DEV_MODE -eq 1 ] && vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
+    "name": "pronko/selective-cache",
+    "description": "Selective Cache extension for Magento 2",
+    "version": "1.1.0",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pronko Consulting",
+            "homepage": "https://www.pronkoconsulting.com/"
+        }
     ],
-    "post-update-cmd": [
-      "[ $COMPOSER_DEV_MODE -eq 1 ] && vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
-    ]
-  },
-  "autoload": {
-    "files": [
-      "registration.php"
-    ],
-    "psr-4": {
-      "Pronko\\SelectiveCache\\": ""
+    "require": {
+        "magento/framework": "~101|~102|~103",
+        "magento/module-backend": "~100|~101|~102"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.5"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Pronko\\SelectiveCache\\": ""
+        }
     }
-  }
 }

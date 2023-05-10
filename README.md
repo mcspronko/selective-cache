@@ -1,4 +1,4 @@
-# Selective Cache extension for Magento2
+# Magento 2 Selective Cache
 
 This extension adds a **Refresh Invalidated Cache** button. Upon clicking the button, the extension cleans all Cache Types which are marked as *Invalidated*.
 
@@ -25,14 +25,7 @@ Here you can enable/disable the cronjob and set when to run the cronjob.
 ### Composer
 
 ```bash
-composer config repositories.pronko git git@github.com:mcspronko/selective-cache.git
 composer require pronko/selective-cache
-```
-
-### Modman
-
-```bash
-modman clone git@github.com:mcspronko/selective-cache.git
 ```
 
 ## Authors
