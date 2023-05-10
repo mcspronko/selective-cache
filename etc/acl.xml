@@ -8,7 +8,7 @@
                     <resource id="Magento_Backend::tools">
                         <resource id="Magento_Backend::cache">
                             <resource id="Magento_Backend::main_actions">
-                                <resource id="Pronko_SelectiveCache::flush_invalidated_cache" title="Flush Invalided Cache" translate="title" sortOrder="30" />
+                                <resource id="Pronko_SelectiveCache::flush_invalidated_cache" title="Flush Invalidated Cache" translate="title" sortOrder="30" />
                             </resource>
                         </resource>
                     </resource>
