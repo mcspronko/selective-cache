@@ -2,9 +2,8 @@
 "There are no invalidated cache types to be cleaned.","There are no invalidated cache types to be cleaned."
 "Cache types cleared automatically: %1","Cache types cleared automatically: %1"
 "Flush Invalidated Cache","Flush Invalidated Cache"
-"Additionally you can %1 directly.","Additionally you can %1 directly."
+"Recommended:","Recommended:"
 "Refresh Invalidated Cache","Refresh Invalidated Cache"
-Pronko,Pronko
 "Selective Cache","Selective Cache"
 "Configure Cronjob","Configure Cronjob"
 "Enable Cronjob","Enable Cronjob"

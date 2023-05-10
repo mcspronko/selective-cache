@@ -1,7 +1,7 @@
 "The following cache types have been successfully cleaned: %1","Folgende Cache Typen wurde erfolgreich bereinigt: %1"
 "There are no invalidated cache types to be cleaned.","Kein invalider Cache Typ vorhanden."
 "Refresh Invalidated Cache","Invalide Caches aktualisieren"
-"Additionally you can %1 directly.","Oder: %1"
+"Recommended:","Oder: %1"
 "Flush Invalidated Cache","Invaliden Cache leeren"
 "Following cache types were automatically cleared: ","Folgende Cache Typen wurden automatisch bereinigt: "
 "Set cronjob for clearing invalidated cache types","Cronjob für das Leeren von invaliden Cache Typen einstellen"
@@ -9,3 +9,4 @@
 "Configure Cronjob","Cronjob konfigurieren"
 "Enable Cronjob","Cronjob aktivieren"
 "Cache types cleared automatically: %1","Cache Typen wurden automatisch bereinigt: %1"
+"Set time for cronjob (for example: * * * * * to run every minute)","Set time for cronjob (for example: * * * * * to run every minute)"
