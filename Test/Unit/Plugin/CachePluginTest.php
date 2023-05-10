@@ -23,29 +23,29 @@ class CachePluginTest extends TestCase
     /**
      * @var CachePlugin
      */
-    private $object;
+    private CachePlugin $object;
 
     /**
-     * @var CacheButton|MockObject
+     * @var MockObject
      */
-    private $cacheButton;
+    private MockObject $cacheButton;
 
     /**
-     * @var Cache|MockObject
+     * @var MockObject
      */
-    private $cache;
+    private MockObject $cache;
 
     /**
-     * @var LayoutInterface|MockObject
+     * @var MockObject
      */
-    private $layout;
+    private MockObject $layout;
 
     /**
-     * @var AuthorizationInterface|MockObject
+     * @var MockObject
      */
-    private $authorization;
+    private MockObject $authorization;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->cacheButton = $this->getMockBuilder(CacheButton::class)
             ->disableOriginalConstructor()
@@ -70,7 +70,7 @@ class CachePluginTest extends TestCase
         $this->object = new CachePlugin($this->cacheButton, $this->authorization);
     }
 
-    public function testBeforeSetLayout()
+    public function testBeforeSetLayout(): void
     {
         $this->cacheButton->expects($this->once())
             ->method('execute')

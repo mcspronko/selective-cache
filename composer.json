@@ -14,9 +14,6 @@
         "magento/framework": "~101|~102|~103",
         "magento/module-backend": "~100|~101|~102"
     },
-    "require-dev": {
-        "phpunit/phpunit": "~6.5"
-    },
     "autoload": {
         "files": [
             "registration.php"

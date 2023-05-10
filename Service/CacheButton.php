@@ -14,18 +14,17 @@ use Magento\Framework\UrlInterface;
 /**
  * Class CacheButton creates a button to refresh invalidated cache types
  */
-
 class CacheButton
 {
     /**
      * @var UrlInterface
      */
-    private $url;
+    private UrlInterface $url;
 
     /**
      * @var Escaper
      */
-    private $escaper;
+    private Escaper $escaper;
 
     /**
      * CacheButton constructor.
@@ -46,7 +45,6 @@ class CacheButton
      * @param Cache $cache
      * @return void
      */
-
     public function execute(Cache $cache): void
     {
         $cache->addButton(
@@ -64,7 +62,6 @@ class CacheButton
      *
      * @return string
      */
-
     private function getFlushInvalidatedOnlyUrl(): string
     {
         return $this->escaper->escapeUrl(
