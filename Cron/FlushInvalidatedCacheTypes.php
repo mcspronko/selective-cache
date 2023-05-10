@@ -62,8 +62,11 @@ class FlushInvalidatedCacheTypes
             $cacheLabels[] = $invalidatedType->getData('cache_type');
         }
 
+        //TODO add configuration setting to enable/disable logging
         if (!empty($cacheLabels)) {
-            $this->logger->info(__("Cache types cleared automatically: %1", implode(', ', $cacheLabels)));
+            $this->logger->info(
+                sprintf("Cache types cleared automatically: %s", implode(', ', $cacheLabels))
+            );
         }
     }
 }

@@ -8,5 +8,4 @@
 "Set time for cronjob (for example: * * * * *   to run every minute)","Zeit(en) setzen, wann der Cronjob ausgeführt werden soll. Zum Beispiel * * * * * um jede Minute zu laufen"
 "Configure Cronjob","Cronjob konfigurieren"
 "Enable Cronjob","Cronjob aktivieren"
-"Cache types cleared automatically: %1","Cache Typen wurden automatisch bereinigt: %1"
 "Set time for cronjob (for example: * * * * * to run every minute)","Set time for cronjob (for example: * * * * * to run every minute)"
