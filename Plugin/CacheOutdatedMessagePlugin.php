@@ -62,7 +62,7 @@ class CacheOutdatedMessagePlugin
                 $this->escaper->escapeHtml(__('Flush Invalidated Cache'))
             );
 
-            $result .= '<br />' . $this->escaper->escapeHtml(__('Recommended:')) . ' ' . $link;
+            $result .= '<br />' . $this->escaper->escapeHtml(__('Recommended')) . ': ' . $link;
         }
 
         return $result;

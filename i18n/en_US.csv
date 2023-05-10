@@ -1,7 +1,7 @@
 "The following cache types have been successfully cleaned: %1","The following cache types have been successfully cleaned: %1"
 "There are no invalidated cache types to be cleaned.","There are no invalidated cache types to be cleaned."
 "Flush Invalidated Cache","Flush Invalidated Cache"
-Recommended:,Recommended:
+Recommended,Recommended
 "Refresh Invalidated Cache","Refresh Invalidated Cache"
 "Selective Cache","Selective Cache"
 "Configure Cronjob","Configure Cronjob"

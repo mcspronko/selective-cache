@@ -1,7 +1,7 @@
 "The following cache types have been successfully cleaned: %1","Folgende Cache Typen wurde erfolgreich bereinigt: %1"
 "There are no invalidated cache types to be cleaned.","Kein invalider Cache Typ vorhanden."
 "Refresh Invalidated Cache","Invalide Caches aktualisieren"
-"Recommended:","Empfohlen:"
+"Recommended","Empfohlen"
 "Flush Invalidated Cache","Invaliden Cache leeren"
 "Following cache types were automatically cleared: ","Folgende Cache Typen wurden automatisch bereinigt: "
 "Set cronjob for clearing invalidated cache types","Cronjob für das Leeren von invaliden Cache Typen einstellen"

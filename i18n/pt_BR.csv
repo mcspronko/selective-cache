@@ -2,7 +2,7 @@
 "There are no invalidated cache types to be cleaned.","Não há caches inválidos a serem limpos."
 "Refresh Invalidated Cache","Atualizar Caches Inválidos"
 "Flush Invalided Cache","Limpar Caches Inválidos"
-"Recommended:","Recommended:"
+Recommended,Recommended
 "Refresh Invalidated Cache","Refresh Invalidated Cache"
 "Selective Cache","Selective Cache"
 "Configure Cronjob","Configure Cronjob"
