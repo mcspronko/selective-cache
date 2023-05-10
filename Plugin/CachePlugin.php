@@ -15,7 +15,6 @@ use Pronko\SelectiveCache\Service\CacheButton;
 /**
  * Class CachePlugin for creating Button in Backend
  */
-
 class CachePlugin
 {
     /**
@@ -48,7 +47,6 @@ class CachePlugin
      *
      * @return void
      */
-
     public function beforeSetLayout(Cache $subject, LayoutInterface $layout)
     {
         if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
