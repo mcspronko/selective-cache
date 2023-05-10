@@ -36,7 +36,7 @@ class CacheFlushInvalidatedCommand extends Command
     public function __construct(
         EventManager $eventManager,
         DataObjectFactory $dataObjectFactory,
-        string $name = ''
+        string $name = 'cache:refresh:invalidated'
     ) {
         $this->eventManager = $eventManager;
         $this->dataObjectFactory = $dataObjectFactory;
@@ -48,7 +48,6 @@ class CacheFlushInvalidatedCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('cache:refresh:invalidated');
         $this->setDescription('Flushes cache storage used by currently invalidated cache type(s)');
         parent::configure();
     }
