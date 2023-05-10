@@ -7,41 +7,39 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Cron;
 
+use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Pronko\SelectiveCache\Logger\CleanCacheLogger;
 
-/** Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob */
+/**
+ * Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob
+ */
 class FlushInvalidatedCacheTypes
 {
-
     /**
      * @var TypeListInterface
      */
-    private $cacheTypeList;
+    private TypeListInterface $cacheTypeList;
 
     /**
      * @var ScopeConfigInterface
      */
-    private $scopeConfig;
+    private ScopeConfigInterface $scopeConfig;
 
     /**
-     * @var CleanCacheLogger
+     * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
-     * FlushInvalidatedCache constructor.
-     *
-     * @param TypeListInterfaceAlias $cacheTypeList
+     * @param TypeListInterface $cacheTypeList
      * @param ScopeConfigInterface $scopeConfig
-     * @param CleanCacheLogger $logger
+     * @param LoggerInterface $logger
      */
-
     public function __construct(
         TypeListInterface $cacheTypeList,
         ScopeConfigInterface $scopeConfig,
-        CleanCacheLogger $logger
+        LoggerInterface $logger
     ) {
         $this->cacheTypeList = $cacheTypeList;
         $this->scopeConfig = $scopeConfig;
@@ -53,23 +51,22 @@ class FlushInvalidatedCacheTypes
      *
      * @return void
      */
-
-    public function execute()
+    public function execute(): void
     {
-        $cronenabled = $this->scopeConfig->isSetFlag(
-            'selectivecache/cron/enabled',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        if (!$this->scopeConfig->isSetFlag('selectivecache/cron/enabled')) {
+            return;
+        }
 
-        if ($cronenabled==true) {
-            foreach ($this->cacheTypeList->getInvalidated() as $invalidatedType) {
-                $this->cacheTypeList->cleanType($invalidatedType->getData('id'));
-                $cacheLabels[] = $invalidatedType->getData('cache_type');
-            }
+        foreach ($this->cacheTypeList->getInvalidated() as $invalidatedType) {
+            $this->cacheTypeList->cleanType($invalidatedType->getData('id'));
+            $cacheLabels[] = $invalidatedType->getData('cache_type');
+        }
 
-            if (!empty($cacheLabels)) {
-                $this->logger->info(__("Cache types cleared automatically: %1", implode(', ', $cacheLabels)));
-            }
+        //TODO add configuration setting to enable/disable logging
+        if (!empty($cacheLabels)) {
+            $this->logger->info(
+                sprintf("Cache types cleared automatically: %s", implode(', ', $cacheLabels))
+            );
         }
     }
 }

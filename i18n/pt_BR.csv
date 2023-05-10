@@ -2,3 +2,10 @@
 "There are no invalidated cache types to be cleaned.","Não há caches inválidos a serem limpos."
 "Refresh Invalidated Cache","Atualizar Caches Inválidos"
 "Flush Invalided Cache","Limpar Caches Inválidos"
+Recommended,Recommended
+"Refresh Invalidated Cache","Refresh Invalidated Cache"
+"Selective Cache","Selective Cache"
+"Configure Cronjob","Configure Cronjob"
+"Enable Cronjob","Enable Cronjob"
+"Set cronjob for clearing invalidated cache types","Set cronjob for clearing invalidated cache types"
+"Set time for cronjob (for example: * * * * * to run every minute)","Set time for cronjob (for example: * * * * * to run every minute)"

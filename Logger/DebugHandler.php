@@ -7,8 +7,12 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Logger;
 
-use Monolog\Logger;
+use Magento\Framework\Logger\Handler\Debug;
 
-class CleanCacheLogger extends Logger
+class DebugHandler extends Debug
 {
+    /**
+     * @var string
+     */
+    protected $fileName = '/var/log/pronkoconsulting/selective_cache_debug.log';
 }
