@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Pronko\SelectiveCache\Test\Unit\Service;
 
 use Magento\Backend\Block\Cache;
+use Magento\Framework\Escaper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Pronko\SelectiveCache\Service\CacheButton;
@@ -21,19 +22,27 @@ class CacheButtonTest extends TestCase
     /**
      * @var CacheButton
      */
-    private $object;
+    private CacheButton $object;
 
     /**
-     * @var Cache|MockObject
+     * @var MockObject
      */
-    private $cache;
+    private MockObject $cache;
 
     /**
-     * @var UrlInterface|MockObject
+     * @var MockObject
      */
-    private $url;
+    private MockObject $url;
 
-    protected function setUp()
+    /**
+     * @var MockObject
+     */
+    private MockObject $escaper;
+
+    /**
+     * @return void
+     */
+    protected function setUp(): void
     {
         $this->cache = $this->getMockBuilder(Cache::class)
             ->disableOriginalConstructor()
@@ -43,20 +52,33 @@ class CacheButtonTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->object = new CacheButton($this->url);
+        $this->escaper = $this->getMockBuilder(Escaper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->object = new CacheButton($this->url, $this->escaper);
     }
 
-    public function testExecute()
+    /**
+     * @return void
+     */
+    public function testExecute(): void
     {
         $url = 'https://www.example.com/pronko_selectivecache/index/flushInvalidated';
+        $label = 'Refresh Invalidated Cache';
         $this->url->expects($this->any())
             ->method('getUrl')
             ->with('pronko_selectivecache/*/flushInvalidated')
             ->willReturn($url);
 
+        $this->escaper->method('escapeUrl')
+            ->willReturn($url);
+        $this->escaper->method('escapeHtml')
+            ->willReturn($label);
+
         $buttonId = 'refresh_invalidated_cache';
         $buttonConfig = [
-            'label' => __('Refresh Invalidated Cache'),
+            'label' => __($label),
             'onclick' => 'setLocation(\'' . $url . '\')',
             'class' => 'primary flush-cache-magento'
         ];
