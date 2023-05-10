@@ -7,11 +7,11 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Console\Command;
 
-use Magento\Framework\DataObject;
-use Magento\Framework\Event\Manager as EventManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Magento\Framework\DataObjectFactory;
+use Magento\Framework\Event\Manager as EventManager;
 
 /**
  * Command for flushing invalidated cache types
@@ -21,23 +21,32 @@ class CacheFlushInvalidatedCommand extends Command
     /**
      * @var EventManager
      */
-    private $eventManager;
+    private EventManager $eventManager;
 
     /**
-     * CacheFlushInvalidatedCommand constructor.
+     * @var DataObjectFactory
+     */
+    private DataObjectFactory $dataObjectFactory;
+
+    /**
      * @param EventManager $eventManager
+     * @param DataObjectFactory $dataObjectFactory
+     * @param string $name
      */
     public function __construct(
-        EventManager $eventManager
+        EventManager $eventManager,
+        DataObjectFactory $dataObjectFactory,
+        string $name = ''
     ) {
         $this->eventManager = $eventManager;
-        parent::__construct();
+        $this->dataObjectFactory = $dataObjectFactory;
+        parent::__construct($name);
     }
 
     /**
-     * @inheritdoc
+     * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('cache:refresh:invalidated');
         $this->setDescription('Flushes cache storage used by currently invalidated cache type(s)');
@@ -45,40 +54,29 @@ class CacheFlushInvalidatedCommand extends Command
     }
 
     /**
-     * Flushes invalidated cache types
-     *
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return void
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        /** @var DataObject $cacheContainer */
-        $cacheContainer = new DataObject();
+        $cacheContainer = $this->dataObjectFactory->create();
 
-        $this->eventManager
-            ->dispatch(
-                'cache_flush_invalidated',
-                ['cache_container' => $cacheContainer]
-            );
+        $this->eventManager->dispatch(
+            'cache_flush_invalidated',
+            ['cache_container' => $cacheContainer]
+        );
 
-        $output->writeln($this->getDisplayMessage($cacheContainer->getData('labels')));
-    }
-
-    /**
-     * Returns an output message to be displayed on the CLI
-     *
-     * @param array $labels
-     * @return string
-     */
-    protected function getDisplayMessage(array $labels)
-    {
-        if (!empty($labels)) {
-            $message = "Flushed invalidated cache types: \n" . implode("\n", $labels);
-        } else {
-            $message = 'No invalidated caches were found.';
+        $labels = $cacheContainer->getData('labels');
+        if (empty($labels)) {
+            $output->writeln('No invalidated caches were found.');
+            return Command::SUCCESS;
+        }
+        $output->writeln('Flushed invalidated cache types:');
+        foreach ($labels as $label) {
+            $output->writeln($label);
         }
 
-        return $message;
+        return Command::SUCCESS;
     }
 }

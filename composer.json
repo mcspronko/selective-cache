@@ -12,7 +12,8 @@
     ],
     "require": {
         "magento/framework": "~102|~103",
-        "magento/module-backend": "~101|~102"
+        "magento/module-backend": "~101|~102",
+        "symfony/console": ">=5.4"
     },
     "autoload": {
         "files": [
