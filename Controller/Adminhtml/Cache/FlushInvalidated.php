@@ -7,21 +7,16 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Controller\Adminhtml\Cache;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\Controller\Adminhtml\Cache;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\Cache\Frontend\Pool;
-use Magento\Framework\App\Cache\StateInterface;
-use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\DataObject;
+use Magento\Framework\DataObject\Factory;
 use Magento\Framework\Event\Manager as EventManager;
-use Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\App\Action;
 
 /**
  * Class FlushInvalidated triggers Cache Flush and creates reloads the page
  */
-class FlushInvalidated extends Cache implements HttpGetActionInterface
+class FlushInvalidated extends Action implements HttpGetActionInterface
 {
     /**
      * Authorization level of a basic admin session
@@ -29,52 +24,30 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
      * @see _isAllowed()
      */
     public const ADMIN_RESOURCE = 'Pronko_SelectiveCache::flush_invalidated_cache';
-    /**
-     * @var Action\Context
-     */
-    private $context;
-    /**
-     * @var TypeListInterface
-     */
-    private $cacheTypeList;
-    /**
-     * @var StateInterface
-     */
-    private $cacheState;
-    /**
-     * @var Pool
-     */
-    private $cacheFrontendPool;
+
     /**
      * @var EventManager
      */
-    private $eventManager;
+    private EventManager $eventManager;
 
     /**
-     * FlushInvalidated constructor.
+     * @var Factory
+     */
+    private Factory $dataObjectFactory;
+
+    /**
      * @param Action\Context $context
-     * @param TypeListInterface $cacheTypeList
-     * @param StateInterface $cacheState
-     * @param Pool $cacheFrontendPool
-     * @param PageFactory $resultPageFactory
      * @param EventManager $eventManager
+     * @param Factory $dataObjectFactory
      */
     public function __construct(
         Action\Context $context,
-        TypeListInterface $cacheTypeList,
-        StateInterface $cacheState,
-        Pool $cacheFrontendPool,
-        PageFactory $resultPageFactory,
-        EventManager $eventManager
+        EventManager $eventManager,
+        Factory $dataObjectFactory
     ) {
-        parent::__construct($context, $cacheTypeList, $cacheState, $cacheFrontendPool, $resultPageFactory);
-
-        $this->context = $context;
-        $this->cacheTypeList = $cacheTypeList;
-        $this->cacheState = $cacheState;
-        $this->cacheFrontendPool = $cacheFrontendPool;
-        $this->resultPageFactory = $resultPageFactory;
         $this->eventManager = $eventManager;
+        $this->dataObjectFactory = $dataObjectFactory;
+        parent::__construct($context);
     }
 
     /**
@@ -82,28 +55,30 @@ class FlushInvalidated extends Cache implements HttpGetActionInterface
      *
      * @return ResultInterface
      */
-    public function execute()
+    public function execute(): ResultInterface
     {
-        /** @var DataObject $cacheContainer */
-        $cacheContainer = new DataObject();
+        $cacheContainer = $this->dataObjectFactory->create();
 
-        $this->eventManager
-            ->dispatch(
-                'cache_flush_invalidated',
-                ['cache_container' => $cacheContainer]
-            );
+        $this->eventManager->dispatch(
+            'cache_flush_invalidated',
+            ['cache_container' => $cacheContainer]
+        );
 
-        $cacheLabels = $cacheContainer->getData('labels');
+        $labels = $cacheContainer->getData('labels');
 
-        if (!empty($cacheLabels)) {
+        if (!empty($labels)) {
             $this->messageManager->addSuccessMessage(
-                __("The following cache types have been successfully cleaned: %1", implode(', ', $cacheLabels))
+                __(
+                    '%1 cache type(s) refreshed.',
+                    implode(', ', $labels)
+                )
             );
         } else {
-            $this->messageManager->addNoticeMessage(__("There are no invalidated cache types to be cleaned."));
+            $this->messageManager->addNoticeMessage(
+                __('There are no invalidated cache types to be cleaned.')
+            );
         }
 
-        $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setRefererOrBaseUrl();
+        return $this->resultRedirectFactory->create()->setRefererOrBaseUrl();
     }
 }

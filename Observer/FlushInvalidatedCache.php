@@ -37,14 +37,14 @@ class FlushInvalidatedCache implements ObserverInterface
     public function execute(Observer $observer): void
     {
         /** @var DataObject $cacheContainer */
-        $cacheContainer = $observer->getEvent()->getCacheContainer();
+        $cacheContainer = $observer->getEvent()->getData('cache_container');
 
-        $cacheLabels = [];
+        $types = [];
         /** @var DataObject $invalidatedType */
         foreach ($this->cacheTypeList->getInvalidated() as $invalidatedType) {
             $this->cacheTypeList->cleanType($invalidatedType->getData('id'));
-            $cacheLabels[] = $invalidatedType->getData('cache_type');
+            $types[] = $invalidatedType->getData('cache_type');
         }
-        $cacheContainer->setData('labels', $cacheLabels);
+        $cacheContainer->setData('labels', $types);
     }
 }

@@ -10,7 +10,7 @@ namespace Pronko\SelectiveCache\Console\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Magento\Framework\DataObjectFactory;
+use Magento\Framework\DataObject\Factory;
 use Magento\Framework\Event\Manager as EventManager;
 
 /**
@@ -24,18 +24,18 @@ class CacheFlushInvalidatedCommand extends Command
     private EventManager $eventManager;
 
     /**
-     * @var DataObjectFactory
+     * @var Factory
      */
-    private DataObjectFactory $dataObjectFactory;
+    private Factory $dataObjectFactory;
 
     /**
      * @param EventManager $eventManager
-     * @param DataObjectFactory $dataObjectFactory
+     * @param Factory $dataObjectFactory
      * @param string $name
      */
     public function __construct(
         EventManager $eventManager,
-        DataObjectFactory $dataObjectFactory,
+        Factory $dataObjectFactory,
         string $name = 'cache:refresh:invalidated'
     ) {
         $this->eventManager = $eventManager;
