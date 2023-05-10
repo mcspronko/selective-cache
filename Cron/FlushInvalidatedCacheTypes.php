@@ -10,7 +10,6 @@ namespace Pronko\SelectiveCache\Cron;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob
@@ -54,12 +53,7 @@ class FlushInvalidatedCacheTypes
      */
     public function execute(): void
     {
-        $isEnabled = $this->scopeConfig->isSetFlag(
-            'selectivecache/cron/enabled',
-            ScopeInterface::SCOPE_STORE
-        );
-
-        if (!$isEnabled) {
+        if (!$this->scopeConfig->isSetFlag('selectivecache/cron/enabled')) {
             return;
         }
 

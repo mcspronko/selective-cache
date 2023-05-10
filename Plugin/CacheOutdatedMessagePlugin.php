@@ -7,27 +7,27 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Plugin;
 
-use Magento\AdminNotification\Model\System\Message\CacheOutdated;
 use Magento\Framework\AuthorizationInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
+use Magento\AdminNotification\Model\System\Message\CacheOutdated;
 
 class CacheOutdatedMessagePlugin
 {
     /**
      * @var UrlInterface
      */
-    private $urlBuilder;
+    private UrlInterface $urlBuilder;
 
     /**
      * @var AuthorizationInterface
      */
-    private $authorization;
+    private AuthorizationInterface $authorization;
 
     /**
      * @var Escaper
      */
-    private $escaper;
+    private Escaper $escaper;
 
     /**
      * CacheOutdatedMessagePlugin constructor.
@@ -53,8 +53,7 @@ class CacheOutdatedMessagePlugin
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-
-    public function afterGetText(CacheOutdated $subject, string $result)
+    public function afterGetText(CacheOutdated $subject, string $result): string
     {
         if ($this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')) {
             $link = sprintf(
@@ -63,10 +62,7 @@ class CacheOutdatedMessagePlugin
                 $this->escaper->escapeHtml(__('Flush Invalidated Cache'))
             );
 
-            $result .= '<br />' . $this->escaper->escapeHtml(__(
-                'Additionally you can %1 directly.',
-                $link
-            ), ['a']);
+            $result .= '<br />' . $this->escaper->escapeHtml(__('Recommended:')) . ' ' . $link;
         }
 
         return $result;

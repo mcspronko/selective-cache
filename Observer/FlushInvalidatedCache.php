@@ -15,38 +15,34 @@ use Magento\Framework\Event\ObserverInterface;
 /**
  * Class FlushInvalidatedCache gets cache types to display after flushing
  */
-
 class FlushInvalidatedCache implements ObserverInterface
 {
     /**
      * @var TypeListInterface
      */
-    protected $_cacheTypeList;
+    private TypeListInterface $cacheTypeList;
 
     /**
-     * FlushInvalidatedCache constructor.
-     * @param TypeListInterfaceAlias $cacheTypeList
+     * @param TypeListInterface $cacheTypeList
      */
     public function __construct(TypeListInterface $cacheTypeList)
     {
-        $this->_cacheTypeList = $cacheTypeList;
+        $this->cacheTypeList = $cacheTypeList;
     }
 
     /**
-     * Flush Invalidated cache
-     *
      * @param Observer $observer
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @return void
      */
-    public function execute(Observer $observer)
+    public function execute(Observer $observer): void
     {
         /** @var DataObject $cacheContainer */
         $cacheContainer = $observer->getEvent()->getCacheContainer();
 
         $cacheLabels = [];
         /** @var DataObject $invalidatedType */
-        foreach ($this->_cacheTypeList->getInvalidated() as $invalidatedType) {
-            $this->_cacheTypeList->cleanType($invalidatedType->getData('id'));
+        foreach ($this->cacheTypeList->getInvalidated() as $invalidatedType) {
+            $this->cacheTypeList->cleanType($invalidatedType->getData('id'));
             $cacheLabels[] = $invalidatedType->getData('cache_type');
         }
         $cacheContainer->setData('labels', $cacheLabels);
