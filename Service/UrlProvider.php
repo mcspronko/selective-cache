@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Service;
 
-use Magento\Framework\UrlInterface;
+use Magento\Backend\Model\UrlInterface;
 
 class UrlProvider
 {
@@ -15,7 +15,7 @@ class UrlProvider
      * Flush Invalidated Cache Types URI
      * @var string
      */
-    private const FLUSH_CACHE_URI = 'pronko_selectivecache/*/flushInvalidated';
+    private const FLUSH_CACHE_URI = 'pronko_selectivecache/cache/flushInvalidated';
 
     /**
      * @var UrlInterface
