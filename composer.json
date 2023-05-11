@@ -13,7 +13,6 @@
     "require": {
         "magento/framework": "~102|~103",
         "magento/module-backend": "~101|~102",
-        "magento/module-admin-notification": "~100",
         "symfony/console": "~4|~5",
         "psr/log": "*"
     },

@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Test\Unit\Service;
 
-use Magento\Backend\Block\Cache;
 use Magento\Framework\Escaper;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
+use Magento\Backend\Block\Cache;
 use Pronko\SelectiveCache\Service\CacheButton;
-use Magento\Framework\UrlInterface;
+use Pronko\SelectiveCache\Service\UrlProvider;
 
 /**
  * Class CacheButtonTest creates TestCase for button Creation
@@ -48,7 +48,7 @@ class CacheButtonTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->url = $this->getMockBuilder(UrlInterface::class)
+        $this->url = $this->getMockBuilder(UrlProvider::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -67,8 +67,7 @@ class CacheButtonTest extends TestCase
         $url = 'https://www.example.com/pronko_selectivecache/index/flushInvalidated';
         $label = 'Refresh Invalidated Cache';
         $this->url->expects($this->any())
-            ->method('getUrl')
-            ->with('pronko_selectivecache/*/flushInvalidated')
+            ->method('getFlushInvalidatedUrl')
             ->willReturn($url);
 
         $this->escaper->method('escapeUrl')
