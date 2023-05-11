@@ -11,7 +11,7 @@ use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\AuthorizationInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Notification\MessageInterface;
-use Magento\Framework\UrlInterface;
+use Pronko\SelectiveCache\Service\UrlProvider;
 
 /**
  * Cache Types message with the link to refresh invalidated cache types
@@ -29,9 +29,9 @@ class CacheInvalidated implements MessageInterface
     private TypeListInterface $cacheTypeList;
 
     /**
-     * @var UrlInterface
+     * @var UrlProvider
      */
-    private UrlInterface $urlBuilder;
+    private UrlProvider $url;
 
     /**
      * @var Escaper
@@ -41,35 +41,37 @@ class CacheInvalidated implements MessageInterface
     /**
      * @param AuthorizationInterface $authorization
      * @param TypeListInterface $cacheTypeList
-     * @param UrlInterface $urlBuilder
+     * @param UrlProvider $url
      * @param Escaper $escaper
      */
     public function __construct(
         AuthorizationInterface $authorization,
         TypeListInterface $cacheTypeList,
-        UrlInterface $urlBuilder,
+        UrlProvider $url,
         Escaper $escaper
     ) {
         $this->authorization = $authorization;
         $this->cacheTypeList = $cacheTypeList;
-        $this->urlBuilder = $urlBuilder;
+        $this->url = $url;
         $this->escaper = $escaper;
     }
 
     /**
+     * Returns a link to flush invalidated cache
+     *
      * @return string
      */
     public function getText(): string
     {
         $link = sprintf(
             '<a href="%s">%s</a>',
-            $this->getFlushInvalidatedUrl(),
+            $this->url->getFlushInvalidatedUrl(),
             $this->escaper->escapeHtml(__('Flush Invalidated Cache'))
         );
 
         return $this->escaper->escapeHtml(__('Invalidated cache type(s)')) .
             ': ' .
-            implode(', ', $this->getCacheTypesForRefresh()) .
+            implode(', ', $this->getInvalidatedCacheTypes()) .
             '. ' .
             $link;
     }
@@ -81,18 +83,19 @@ class CacheInvalidated implements MessageInterface
      */
     public function getIdentity(): string
     {
-        return implode('|', $this->getCacheTypesForRefresh());
+        return implode('|', $this->getInvalidatedCacheTypes());
     }
 
     /**
-     * Check whether
+     * Check whether there are invalidated cache types in the system.
+     * It also checks for permissions to show the message.
      *
      * @return bool
      */
     public function isDisplayed(): bool
     {
         return $this->authorization->isAllowed('Pronko_SelectiveCache::flush_invalidated_cache')
-            && $this->getCacheTypesForRefresh();
+            && $this->getInvalidatedCacheTypes();
     }
 
     /**
@@ -106,24 +109,16 @@ class CacheInvalidated implements MessageInterface
     }
 
     /**
+     * Retrieve invalidated cache types
+     *
      * @return array
      */
-    private function getCacheTypesForRefresh(): array
+    private function getInvalidatedCacheTypes(): array
     {
         $output = [];
         foreach ($this->cacheTypeList->getInvalidated() as $type) {
             $output[] = $type->getCacheType();
         }
         return $output;
-    }
-
-    /**
-     * Method getFlushInvalidatedOnlyUrl gets Url for flushing only invalidated cache types
-     *
-     * @return string
-     */
-    private function getFlushInvalidatedUrl(): string
-    {
-        return $this->urlBuilder->getUrl('pronko_selectivecache/cache/flushInvalidated');
     }
 }

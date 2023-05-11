@@ -9,7 +9,6 @@ namespace Pronko\SelectiveCache\Service;
 
 use Magento\Backend\Block\Cache;
 use Magento\Framework\Escaper;
-use Magento\Framework\UrlInterface;
 
 /**
  * Class CacheButton creates a button to refresh invalidated cache types
@@ -17,9 +16,9 @@ use Magento\Framework\UrlInterface;
 class CacheButton
 {
     /**
-     * @var UrlInterface
+     * @var UrlProvider
      */
-    private UrlInterface $url;
+    private UrlProvider $url;
 
     /**
      * @var Escaper
@@ -27,12 +26,11 @@ class CacheButton
     private Escaper $escaper;
 
     /**
-     * CacheButton constructor.
-     * @param UrlInterface $url
+     * @param UrlProvider $url
      * @param Escaper $escaper
      */
     public function __construct(
-        UrlInterface $url,
+        UrlProvider $url,
         Escaper $escaper
     ) {
         $this->url = $url;
@@ -40,7 +38,7 @@ class CacheButton
     }
 
     /**
-     * Method execute
+     * Adds the "Refresh Invalidated Cache" button to the Cache block class
      *
      * @param Cache $cache
      * @return void
@@ -51,21 +49,12 @@ class CacheButton
             'refresh_invalidated_cache',
             [
                 'label' => $this->escaper->escapeHtml(__('Refresh Invalidated Cache')),
-                'onclick' => sprintf("setLocation('%s')", $this->getFlushInvalidatedOnlyUrl()),
+                'onclick' => sprintf(
+                    "setLocation('%s')",
+                    $this->escaper->escapeUrl($this->url->getFlushInvalidatedUrl())
+                ),
                 'class' => 'primary flush-cache-magento'
             ]
-        );
-    }
-
-    /**
-     * Method getFlushInvalidatedOnlyUrl
-     *
-     * @return string
-     */
-    private function getFlushInvalidatedOnlyUrl(): string
-    {
-        return $this->escaper->escapeUrl(
-            $this->url->getUrl('pronko_selectivecache/*/flushInvalidated')
         );
     }
 }
