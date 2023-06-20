@@ -14,6 +14,7 @@
     "require": {
         "magento/framework": "~102|~103",
         "magento/module-backend": "~101|~102",
+        "magento/module-config": "~101",
         "symfony/console": "~4|~5",
         "psr/log": "~1",
         "pronko/module-base": ">=3.0.5"
