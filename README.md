@@ -17,7 +17,7 @@ The cache records which are marked as *Invalidated* are cleaned when a user hits
 
 ### Cronjob
 You can set a cronjob to automatically clean invalidated cache types regularly.
-Navigate to Stores > Configuration and select Pronko > Selective Cache.
+Navigate to Stores > Configuration and select Pronko Consulting > Selective Cache.
 Here you can enable/disable the cronjob and set when to run the cronjob.
 
 ## Installation
@@ -27,17 +27,3 @@ Here you can enable/disable the cronjob and set when to run the cronjob.
 ```bash
 composer require pronko/selective-cache
 ```
-
-## Authors
-
-* [Max Pronko](https://www.maxpronko.com)
-
-## Contributors
-
-* Peter Herrmann
-* Harshvardhan Malpani
-* Serhii Koval
-* Antonis Galanis
-* Arshad Syed
-* Andresa Martins
-* Mario Maresch

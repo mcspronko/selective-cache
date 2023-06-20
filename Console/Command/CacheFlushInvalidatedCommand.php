@@ -44,6 +44,8 @@ class CacheFlushInvalidatedCommand extends Command
     }
 
     /**
+     * Configure method
+     *
      * @return void
      */
     protected function configure(): void
@@ -53,6 +55,8 @@ class CacheFlushInvalidatedCommand extends Command
     }
 
     /**
+     * Execute method
+     *
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
