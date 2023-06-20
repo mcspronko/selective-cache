@@ -31,6 +31,8 @@ class FlushInvalidatedCache implements ObserverInterface
     }
 
     /**
+     * Execute method
+     *
      * @param Observer $observer
      * @return void
      */

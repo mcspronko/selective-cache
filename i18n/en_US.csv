@@ -1,8 +1,9 @@
-"The following cache types have been successfully cleaned: %1","The following cache types have been successfully cleaned: %1"
+"%1 cache type(s) refreshed.","%1 cache type(s) refreshed."
 "There are no invalidated cache types to be cleaned.","There are no invalidated cache types to be cleaned."
 "Flush Invalidated Cache","Flush Invalidated Cache"
-Recommended,Recommended
+"Invalidated cache type(s)","Invalidated cache type(s)"
 "Refresh Invalidated Cache","Refresh Invalidated Cache"
+"Pronko Consulting","Pronko Consulting"
 "Selective Cache","Selective Cache"
 "Configure Cronjob","Configure Cronjob"
 "Enable Cronjob","Enable Cronjob"

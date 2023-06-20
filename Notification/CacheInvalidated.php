@@ -88,6 +88,7 @@ class CacheInvalidated implements MessageInterface
 
     /**
      * Check whether there are invalidated cache types in the system.
+     *
      * It also checks for permissions to show the message.
      *
      * @return bool
