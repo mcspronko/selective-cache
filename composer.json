@@ -1,7 +1,7 @@
 {
     "name": "pronko/selective-cache",
-    "description": "Selective Cache by Pronko Consulting",
-    "version": "2.0.1",
+    "description": "Pronko Consulting Selective Cache",
+    "version": "2.1.0",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
@@ -12,12 +12,10 @@
         }
     ],
     "require": {
-        "magento/framework": "~102|~103",
-        "magento/module-backend": "~101|~102",
+        "magento/framework": "~103",
+        "magento/module-backend": "~102",
         "magento/module-config": "~101",
-        "symfony/console": "~4|~5",
-        "psr/log": "~1",
-        "pronko/module-base": ">=3.0.5"
+        "symfony/console": "~6"
     },
     "autoload": {
         "files": [
