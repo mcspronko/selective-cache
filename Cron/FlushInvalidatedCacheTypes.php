@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace Pronko\SelectiveCache\Cron;
 
-use Psr\Log\LoggerInterface;
 use Magento\Framework\DataObject\Factory;
 use Magento\Framework\Event\Manager as EventManager;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Logger\Monolog;
 
 /**
  * Class FlushInvalidatedCacheTypes flushes invalidated cache types by cronjob
@@ -23,9 +23,9 @@ class FlushInvalidatedCacheTypes
     private ScopeConfigInterface $scopeConfig;
 
     /**
-     * @var LoggerInterface
+     * @var Monolog
      */
-    private LoggerInterface $logger;
+    private Monolog $logger;
 
     /**
      * @var EventManager
@@ -41,13 +41,13 @@ class FlushInvalidatedCacheTypes
      * @param EventManager $eventManager
      * @param Factory $dataObjectFactory
      * @param ScopeConfigInterface $scopeConfig
-     * @param LoggerInterface $logger
+     * @param Monolog $logger
      */
     public function __construct(
         EventManager $eventManager,
         Factory $dataObjectFactory,
         ScopeConfigInterface $scopeConfig,
-        LoggerInterface $logger
+        Monolog $logger
     ) {
         $this->eventManager = $eventManager;
         $this->dataObjectFactory = $dataObjectFactory;
