@@ -15,8 +15,7 @@
         "magento/framework": "~103",
         "magento/module-backend": "~102",
         "magento/module-config": "~101",
-        "symfony/console": "~6",
-        "pronko/module-base": "~4"
+        "symfony/console": "~6"
     },
     "autoload": {
         "files": [
